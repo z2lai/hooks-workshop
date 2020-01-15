@@ -5,12 +5,12 @@ import styles from '../MemeCreator.module.css';
 import memeTemplates from '../memeTemplates.json';
 
 function MemeCreator() {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef(null); // hold any object that we expect to mutate that will never trigger a re-render
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState('');
   const [meme, setMeme] = useState(memeTemplates[0].value);
 
-  function onCaptionInput(event){
+  function onCaptionInput(event){ // these functions are re-created on every re-render
     setCaption(event.target.value);
   }
 
@@ -24,7 +24,7 @@ function MemeCreator() {
     saveAs(blob, 'meme.png');
   }
 
-  useEffect(() => {
+  useEffect(() => { // useEffect has to be a synchronous function
     async function loadMemeTemplate(memeValue) {
       const template = memeTemplates.find(template => template.value === memeValue);
       const img = new window.Image();

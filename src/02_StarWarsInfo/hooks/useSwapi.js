@@ -47,7 +47,7 @@ function useSwapi(resource, options = {}) {
       const data = await res.json();
 
       setData(data);
-      setLoading(false);
+      setLoading(false); // guy says that re-render dose not happen twice since both setState calls are within the same function
     }
 
     loadData(resource, id, page, search);
